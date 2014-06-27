@@ -1,0 +1,30 @@
+
+nPpl = 10;
+nGrid = 10;
+h = 10;
+pomdp = generateProblemMP(nGrid,1);
+VF = solvePOMDPMP(pomdp,h);
+
+pomdpLO = generateProblemMPLO(nGrid,1);
+VFLO = solvePOMDPMPLO(pomdpLO,h);
+
+pomdpDiff = generateProblemMPDiffRew(nGrid,1);
+VFDiff = solvePOMDPMP(pomdpDiff,h);
+
+for tt = 1:500
+
+    rewRedSS(tt,:) = runSimsIndpP(pomdp,nGrid,nPpl,h,VF,'d');
+
+end
+
+for pp = 1:500
+    
+    rewLO(pp,:) = runSimsIndpP(pomdpLO,nGrid,nPpl,h,VFLO,'d');
+    
+end
+
+for gg = 1:500
+    
+    rewDiff(gg,:) = runSimsIndpP(pomdpDiff,nGrid,nPpl,h,VFDiff,'Diff');
+    
+end

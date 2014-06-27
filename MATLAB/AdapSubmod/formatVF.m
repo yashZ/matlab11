@@ -1,0 +1,5 @@
+function VFAllP = formatVF()
+
+    
+
+end
